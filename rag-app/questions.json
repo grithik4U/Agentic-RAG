@@ -1,0 +1,9 @@
+[
+  {"question": "What are the main topics covered across the uploaded documents?", "doc_hints": []},
+  {"question": "Summarize any definitions provided.", "doc_hints": []},
+  {"question": "List any dates or deadlines mentioned.", "doc_hints": []},
+  {"question": "What are the key steps or procedures described?", "doc_hints": []},
+  {"question": "Are there any figures or statistics noted?", "doc_hints": []},
+  {"question": "What actions are recommended?", "doc_hints": []}
+]
+
