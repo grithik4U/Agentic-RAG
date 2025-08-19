@@ -95,7 +95,10 @@
       }
       const panel = document.getElementById('topk');
       panel.innerHTML = '';
-      for (const r of j.retrieved) {
+      if (!j.retrieved || j.retrieved.length === 0) {
+        panel.innerHTML = '<div class="muted">No relevant chunks retrieved.</div>';
+      }
+      for (const r of j.retrieved || []) {
         const p = document.createElement('div');
         const tag = `${r.filename}#${r.chunk_id}` + (r.page ? ` (p. ${r.page})` : '');
         p.innerHTML = `<strong>${tag}</strong> <span class="muted">score=${r.score.toFixed(3)}</span><div class="muted">${r.text}</div>`;
