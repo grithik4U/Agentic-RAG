@@ -65,6 +65,8 @@ def _run_job(job_id: str, doc_ids: List[str]) -> None:
             if d["status"] == "DUPLICATE":
                 status.processed_docs.append(doc_id)
                 continue
+            # Mark as processing for better UX
+            db.update_document_status(doc_id, "PROCESSING")
             try:
                 path = Path(d["path"])
                 ext = d["ext"].lower()
@@ -119,7 +121,7 @@ def _run_job(job_id: str, doc_ids: List[str]) -> None:
                     )
                     status.embedded_chunks += 1
 
-            db.update_document_status(doc_id, "READY")
+            db.update_document_status(doc_id, "COMPLETED")
             status.processed_docs.append(doc_id)
 
         # Rebuild index from all embeddings
