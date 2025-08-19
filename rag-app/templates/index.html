@@ -69,6 +69,11 @@
       ev.preventDefault();
       const query = document.getElementById('q').value.trim();
       const res = await fetch('/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query }) });
+      if (!res.ok) {
+        const txt = await res.text();
+        document.getElementById('answer').textContent = 'Error: ' + txt;
+        return;
+      }
       const j = await res.json();
       document.getElementById('answer').textContent = j.answer;
       const cits = document.getElementById('citations');
